@@ -1,0 +1,17 @@
+/**
+ * $Id: BSHExpressionHeader.txt 1558 2005-09-06 11:40:20Z taqua $
+ */
+import org.jfree.report.*;
+import org.jfree.util.Log;
+import java.util.Properties;
+
+/**
+ * The datarow is set before evaluation is started, use this as source for all evaluations.
+ */
+DataRow dataRow;
+
+Object getValue ()
+{
+  Log.debug ("Warning: No user defined function!");
+  return null;
+}

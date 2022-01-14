@@ -1,0 +1,58 @@
+/*
+ * Copyright 2006 Pentaho Corporation.  All rights reserved.
+ * This software was developed by Pentaho Corporation and is provided under the terms
+ * of the Mozilla Public License, Version 1.1, or any later version. You may not use
+ * this file except in compliance with the license. If you need a copy of the license,
+ * please go to http://www.mozilla.org/MPL/MPL-1.1.txt.
+ *
+ * Software distributed under the Mozilla Public License is distributed on an "AS IS"
+ * basis, WITHOUT WARRANTY OF ANY KIND, either express or  implied. Please refer to
+ * the license for the specific language governing your rights and limitations.
+ *
+ * Additional Contributor(s): Martin Schmid gridvision engineering GmbH
+ */
+package org.pentaho.reportdesigner.crm.report.properties;
+
+import org.jetbrains.annotations.NonNls;
+import org.jetbrains.annotations.NotNull;
+import org.pentaho.reportdesigner.crm.report.model.ReportElement;
+import org.pentaho.reportdesigner.crm.report.model.TextReportElement;
+import org.pentaho.reportdesigner.lib.common.util.LoggerUtil;
+
+import java.beans.BeanInfo;
+import java.beans.IntrospectionException;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ * User: Martin
+ * Date: 21.10.2005
+ * Time: 06:47:55
+ */
+@SuppressWarnings({"ALL"})
+public class PropertyTester
+{
+    @NonNls
+    @NotNull
+    private static final Logger LOG = Logger.getLogger(PropertyTester.class.getName());
+
+
+    public static void main(@NotNull String[] args) throws IntrospectionException
+    {
+        LoggerUtil.initLogger();
+
+        BeanInfo beanInfo = Introspector.getBeanInfo(TextReportElement.class, ReportElement.class);
+        if (LOG.isLoggable(Level.FINE)) LOG.log(Level.FINE, "PropertyTester.main beanInfo = " + beanInfo);
+
+        PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
+        for (PropertyDescriptor propertyDescriptor : propertyDescriptors)
+        {
+            if (LOG.isLoggable(Level.FINE)) LOG.log(Level.FINE, "PropertyTester.main propertyDescriptor = " + propertyDescriptor);
+
+        }
+
+
+    }
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) 2006, Pentaho Corporation. All Rights Reserved.
+  -->
+
+<sql-datasource
+        xmlns="http://jfreereport.sourceforge.net/namespaces/datasources/sql"
+        xmlns:html="http://www.w3.org/1999/xhtml">
+  <connection>
+    <driver>org.postgresql.Driver</driver>
+    <url>jdbc:postgresql://172.16.4.253/digitall_devel</url>
+    <properties>
+      <property name="user">admin</property>
+      <property name="password">admin1</property>
+    </properties>
+  </connection>
+
+  <!--
+  First query: get all regions .. (It would help if the damn sample database
+  would have been normalized.
+  -->
+  <query name="default">
+    SELECT * FROM organigrama.dependencias
+  </query>
+</sql-datasource>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+  ~ Copyright (c) 2007, Your Corporation. All Rights Reserved.
+  -->
+
+<report xmlns="http://jfreereport.sourceforge.net/namespaces/reports/legacy/simple"
+    engine-version="0.8.9" name="Configuration Reference" pageformat="A4"
+    topmargin="20" leftmargin="20" bottommargin="20" rightmargin="20">
+
+  <reportheader fontsize="12" background-color="#e9741c" padding-bottom="5">
+    <label name="rh-title" x="0" y="0" width="100%" height="15" fontname="SansSerif" fsbold="true">Report-Configuration Reference</label>
+    <label name="rh-descr" x="0" y="15" width="100%" height="15" fontname="SansSerif" dynamic="true"
+           fsbold="true" whitespace-collapse="preserve-breaks">This document describes the report-configuration settings that are available in the report engine.</label>
+  </reportheader>
+
+  <groups>
+    <group name="global-or-local">
+      <fields>
+        <field>global</field>
+      </fields>
+      <groupheader border-bottom-color="black" border-bottom-style="solid" name="gh" fontname="SansSerif"
+                   border-bottom-width="1" padding-bottom="5" padding-top="5" background-color="#e9b158">
+        <band name="global-config-header" width="100%">
+          <style-expression style-key="visible" formula="=IF([global];&quot;true&quot;;&quot;false&quot;)" />
+
+          <label name="global-label" x="0" y="0" width="100%" height="22" fontsize="15" fsbold="true">Global Configuration Keys</label>
+          <label name="global-text" x="0" y="30" width="100%" height="22" fontsize="12"
+                 whitespace-collapse="collapse" dynamic="true">
+          The global report configuration defines system-wide defaults. The configuration is used to provide
+          the low-level configuration and to specify which plugins and factories shall be used by the system.
+          The global configuration can also be used to provide default values for all local report configuration
+          settings.</label>
+        </band>
+        <band name="local-config-header" width="100%">
+          <style-expression style-key="visible" formula="=IF([global];&quot;false&quot;;&quot;true&quot;)" />
+          <label name="local-label" x="0" y="0" width="100%" height="22" fontsize="15" fsbold="true">Local Configuration Keys</label>
+          <label name="local-text" x="0" y="30" width="100%" height="22" fontsize="18"
+                 whitespace-collapse="collapse" dynamic="true">
+          The local report configuration defines configures the report-processing and layouting system. It
+          is used to define how the report processors behave and how content is generated. Local settings do
+          not affect other reports.</label>
+        </band>
+      </groupheader>
+    </group>
+  </groups>
+
+  <items fontname="SansSerif" fontsize="10" layout="block" name="ib" padding-bottom="5">
+    <string-field name="ib-key" height="12" fieldname="key-name" background-color="#e9d4c5"/>
+    <string-field name="ib-desc" padding-left="20" height="12" dynamic="true" fieldname="description"/>
+    <band name="text-band" layout="inline" padding-left="20" padding-top="10">
+      <style-expression style-key="visible" formula="=IF([type] = &quot;text&quot;;&quot;true&quot;;&quot;false&quot;)" />
+      <label name="text-label" fontstyle="bold">Text: </label>
+      <label name="text-text">The specified value contains text.</label>
+    </band>
+    <band name="class-band" layout="inline" padding-left="20" padding-top="10">
+      <style-expression style-key="visible" formula="=IF([type] = &quot;class&quot;;&quot;true&quot;;&quot;false&quot;)" />
+      <label name="class-label" fontstyle="bold">ClassName: </label>
+      <label name="class-text" >The configuration entry specifies a classname, that must be either a implementation or subclass of </label>
+      <string-field name="class-field" fontstyle="bold" fieldname="value"/>
+      <label name="class-dot" >.</label>
+    </band>
+    <band name="enum-band" layout="inline" padding-left="20" padding-top="10">
+      <style-expression style-key="visible" formula="=IF([type] = &quot;enum&quot;;&quot;true&quot;;&quot;false&quot;)" />
+      <label name="enum-label" fontstyle="bold">Enumeration: </label>
+      <label name="enum-text">The specified value must be one of the following values: </label>
+      <string-field name="enum-field" fontstyle="bold" fieldname="value"/>
+      <label name="enum-dot" >.</label>
+    </band>
+  </items>
+
+  <pagefooter>
+    <line x1="0" y1="0" x2="100%" y2="0" weight="0.5"/>
+    <date-field fieldname="report.date" format="d-MMM-yyyy" x="0" y="4" width="25%" height="18" alignment="left"/>
+    <string-field fieldname="pageXofY" x="75%" y="4" width="25%" height="18" alignment="right"/>
+  </pagefooter>
+
+  <functions>
+    <expression name="pageXofY" class="org.jfree.report.function.PageOfPagesFunction"/>
+  </functions>
+</report>
